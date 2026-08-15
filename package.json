@@ -1,6 +1,6 @@
 {
   "name": "dsh-hindsight-plugins",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Hindsight memory manager for DeepSeek Harness: settings UI (intranet/extranet routes) with automatic check & install of the official @vectorize-io/hindsight-coding-agents DSH adapter",
   "type": "module",
   "main": "lib/index.js",
