@@ -50,6 +50,7 @@ DSH（DeepSeek Harness）的 **Hindsight 外部记忆管家**：设置页图形�
 ## ✨ 功能特性
 
 - **自动检测与自动安装**：插件启动时检查官方 DSH 适配器（`npx @vectorize-io/hindsight-coding-agents install dsh`）是否已安装挂载；缺失时自动非交互执行官方安装器（地址依次取自：现有 `coding-agent.json` -> 本插件 sidecar 的内网地址 -> 插件配置 `defaultApiUrl`）。也可在界面点「一键安装官方适配器」，安装日志实时滚动
+- **重复注册检测与一键收敛**：精确审计所有补丁层的 `id: hindsight` 注册数（0 = 缺失 / 1 = 健康 / ≥2 = 重复）。重复会导致 `dsh web` 启动失败（duplicate loader entry id）--此时界面显示琥珀色警告与「一键收敛」按钮：保留 profile bundle 注册、移除官方安装器写入的 home 补丁行（改动前自动备份）。收敛只在用户点击或安装完成后执行，绝不明动
 - **设置页 GUI**：设置 -> 插件 -> 「外部记忆」标签页
   - 状态卡：当前路由 + 写入范围（首行）、当前内/外网地址、Hindsight 服务端版本号（`GET /version` 官方同款端点）、Coding Agents 版本号、安装状态（绿/红）
   - 「管理」弹窗：编辑内网地址 / 外网地址 / 当前路由（内网|外网），逐地址「测试」连通性，保存设置
@@ -136,6 +137,7 @@ Hindsight 服务器（自建 NAS / 云端）：会话写回 + 事实提取 + 知
 | `/plugins/dsh-hindsight-plugins/test` | POST | 地址连通性探测（状态码 + 延迟） |
 | `/plugins/dsh-hindsight-plugins/install` | POST | 一键安装官方适配器（启动时也会自动检测） |
 | `/plugins/dsh-hindsight-plugins/retain` | POST | 主动同步开关（写 `harnesses.dsh.retainSessions`，对新会话生效） |
+| `/plugins/dsh-hindsight-plugins/dedupe` | POST | 一键收敛重复注册（保留 bundle 注册、移除 home 行，自动备份） |
 
 ## ⚙️ 配置
 
@@ -178,6 +180,8 @@ npm pack                                                   # 打包 tgz
 | v0.2.0 ~ v0.2.2 | 服务端版本探测（GET /version）；发布前隐私清理 |
 | v0.3.0 | 会话同步开关（POST /retain，映射官方 retainSessions） |
 | v0.3.1 | 开关语义明确为「主动同步」：关闭 = 不主动同步，被动按需入库不受影响；README 按插件市场风格重写 |
+| v0.3.2 | 防御官方安装器的裸 `[]` 补丁占位 bug（触发前清除、安装后修复） |
+| v0.4.0 | **注册审计重写**：adapterStatus 从字符串匹配升级为逐层精确计数 `id: hindsight`（0/1/≥2 三态）；重复注册时琥珀色警告 +「一键收敛」（POST /dedupe，保留 bundle 注册、剥离 home 标记块，自动备份）；手动安装完成后自动收敛一次；绝不明动清理 |
 
 ## 📄 许可
 
