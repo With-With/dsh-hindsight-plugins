@@ -27,7 +27,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/a771853580/dsh-hindsight-plugins.git"
+    "url": "git+https://github.com/With-With/dsh-hindsight-plugins.git"
   },
   "peerDependencies": {
     "react": "^18.2.0"

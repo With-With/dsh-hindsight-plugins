@@ -1,8 +1,8 @@
 # dsh-hindsight-plugins
 
 ![DeepSeek Harness](https://img.shields.io/badge/DeepSeek%20Harness-生态插件-4D6BFE?logo=deepseek&logoColor=white)
-![GitHub Stars](https://img.shields.io/github/stars/a771853580/dsh-hindsight-plugins?logo=github)
-![License](https://img.shields.io/github/license/a771853580/dsh-hindsight-plugins)
+![GitHub Stars](https://img.shields.io/github/stars/With-With/dsh-hindsight-plugins?logo=github)
+![License](https://img.shields.io/github/license/With-With/dsh-hindsight-plugins)
 ![Version](https://img.shields.io/badge/version-0.3.1-blue)
 ![类型](https://img.shields.io/badge/类型-客户端%2B服务端插件-blueviolet)
 ![平台](https://img.shields.io/badge/平台-Web%20GUI-lightgrey)
@@ -34,14 +34,14 @@ DSH（DeepSeek Harness）的 **Hindsight 外部记忆管家**：设置页图形�
 
 **喂给 AI 的一句话**（AI 具备命令执行能力即可，无需解释）：
 
-> 安装 DSH 插件 dsh-hindsight-plugins（Hindsight 外部记忆管家）：克隆 https://github.com/a771853580/dsh-hindsight-plugins 到 ~/.dsh/profiles/web/node_modules/dsh-hindsight-plugins，在 ~/.dsh/cordis.patch.yml 追加 `- insert:` 条目（id: hindsight-plugins，name: dsh-hindsight-plugins，config.autoInstall: true），然后重启 dsh web 并刷新页面。
+> 安装 DSH 插件 dsh-hindsight-plugins（Hindsight 外部记忆管家）：克隆 https://github.com/With-With/dsh-hindsight-plugins 到 ~/.dsh/profiles/web/node_modules/dsh-hindsight-plugins，在 ~/.dsh/cordis.patch.yml 追加 `- insert:` 条目（id: hindsight-plugins，name: dsh-hindsight-plugins，config.autoInstall: true），然后重启 dsh web 并刷新页面。
 
 **或者直接复制命令执行：**
 
 | 平台 | 命令 |
 |---|---|
-| Windows (PowerShell) | `git clone https://github.com/a771853580/dsh-hindsight-plugins.git "$env:USERPROFILE\.dsh\profiles\web\node_modules\dsh-hindsight-plugins"` |
-| macOS / Linux | `git clone https://github.com/a771853580/dsh-hindsight-plugins.git ~/.dsh/profiles/web/node_modules/dsh-hindsight-plugins` |
+| Windows (PowerShell) | `git clone https://github.com/With-With/dsh-hindsight-plugins.git "$env:USERPROFILE\.dsh\profiles\web\node_modules\dsh-hindsight-plugins"` |
+| macOS / Linux | `git clone https://github.com/With-With/dsh-hindsight-plugins.git ~/.dsh/profiles/web/node_modules/dsh-hindsight-plugins` |
 
 > 克隆后还需注册 patch 条目（见下文 📦 安装本插件）并重启 DSH。也可以在 [DSH插件市场](https://github.com/bradeGithub/DSH-Plugins-Marketplace) 中一键安装（自动完成克隆 + 注册）。
 
@@ -73,7 +73,7 @@ DSH（DeepSeek Harness）的 **Hindsight 外部记忆管家**：设置页图形�
 ### 方式二：命令安装
 
 ```bash
-dsh plugin --profile web add git+https://github.com/a771853580/dsh-hindsight-plugins.git
+dsh plugin --profile web add git+https://github.com/With-With/dsh-hindsight-plugins.git
 ```
 
 ### 方式三：手动挂载
