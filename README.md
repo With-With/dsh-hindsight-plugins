@@ -20,6 +20,8 @@ DSH（DeepSeek Harness）的 **Hindsight 外部记忆管家**：设置页图形�
     写入范围（全部客户端|仅 DSH），逐地址「测试」连通性，保存设置
 - **双路由管理**：内网/外网两套地址 + 一键切换；`仅 DSH` 模式写入
   `harnesses.dsh.apiUrl` 分节，不影响 Codex 等其他客户端
+- **会话同步开关**：一键开/关「AI 会话自动写入 Hindsight」（映射官方
+  `harnesses.dsh.retainSessions` 配置，对新会话生效；关闭时手动入库与检索不受影响）
 - **安全写入**：原子写 + 改动前自动备份 `coding-agent.json`
   （`*.hindsight-settings-backup`），保留全部未知字段
 - **未安装警示**：适配器缺失时红色横幅 + 安装命令 + [官方文档](https://hindsight.vectorize.io/sdks/integrations/coding-agents)链接 + 「?」帮助
@@ -59,13 +61,14 @@ dsh plugin --profile web add git+https://github.com/a771853580/dsh-hindsight-plu
 
 ```
 设置 → 插件 → 「外部记忆」（浏览器半边，settings.plugins.tab slot）
-        │  fetch /plugins/dsh-hindsight-plugins/{config,test,install}
+        │  fetch /plugins/dsh-hindsight-plugins/{config,test,install,retain}
         ▼
 宿主半边（node，webServer 路由，仅接受 loopback）
   GET  /config   读取路由 + 生效配置 + 适配器状态 + 安装进度
   POST /config   保存（原子写 + 自动备份 coding-agent.json）
   POST /test     地址连通性探测（状态码 + 延迟）
   POST /install  一键安装官方适配器（启动时也会自动检测）
+  POST /retain   会话同步开关（写 harnesses.dsh.retainSessions，对新会话生效）
         ▼
 ~/.hindsight/dsh-route.json       ← 双地址与当前路由（本插件 sidecar）
 ~/.hindsight/coding-agent.json    ← 解析后的地址（apiUrl 或 harnesses.dsh.apiUrl）
