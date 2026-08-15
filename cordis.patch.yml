@@ -1,0 +1,22 @@
+# dsh-hindsight-plugins bundle patch: mounts the Hindsight memory manager
+# into a dsh host composition.
+#
+# The node half serves config/test/install routes under
+# /plugins/dsh-hindsight-plugins and (by default) ensures the OFFICIAL
+# adapter is installed on startup; the browser half contributes the
+# 「外部记忆」tab to the Plugins settings section (settings.plugins.tab).
+#
+# Install: `dsh plugin --profile <name> add dsh-hindsight-plugins`
+# (npm name, GitHub URL, or a local path), or mount a row by hand in any
+# user patch layer:
+#   - insert:
+#       - id: hindsight-plugins
+#         name: dsh-hindsight-plugins
+#         config:
+#           autoInstall: true          # check & auto-install official adapter
+#           defaultApiUrl: ''          # fallback when no config/sidecar URL
+- insert:
+    - id: hindsight-plugins
+      name: dsh-hindsight-plugins
+      config:
+        autoInstall: true
