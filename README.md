@@ -90,7 +90,6 @@ dsh plugin --profile web add git+https://github.com/a771853580/dsh-hindsight-plu
 
 ```bash
 node --check lib/index.js && node --check lib/client.js   # 语法
-node test/e2e.mjs                                          # 端到端（需 dsh web 运行中）
 npm pack                                                   # 打包 tgz
 ```
 
